@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build and upload artifacts
+    runs-on: windows-latest
+   
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+
+      - name: Navigate to Workspace
+        run: cd $GITHUB_WORKSPACE
+
+      - name: Restore Packages
+        run: nuget restore "Visma HRM MA.sln"
+
+      - name: Build Solution
+        run: |
+          msbuild.exe "Visma HRM MA.sln" /p:platform="Any CPU" /p:Configuration="Release"
+      
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: vigobas-pifu-ist-ma
+          path: bin/release/"visma hrm ma.dll"
