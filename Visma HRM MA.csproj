@@ -120,7 +120,7 @@
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Vigo.Bas, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Vigo.Bas.0.0.13\lib\net472\Vigo.Bas.dll</HintPath>
+      <HintPath>packages\Vigo.Bas.1.0.0\lib\net472\Vigo.Bas.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
