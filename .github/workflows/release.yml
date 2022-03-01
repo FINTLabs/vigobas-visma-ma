@@ -47,7 +47,7 @@ jobs:
       - name: Build Solution
         run: |
           msbuild.exe "Visma HRM MA.sln" -property:platform="Any CPU" -property:Configuration="Release"
-
+          
       - name: Pack release
         run: |
           cd bin/release
