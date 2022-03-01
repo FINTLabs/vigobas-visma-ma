@@ -25,11 +25,11 @@ using System.Runtime.CompilerServices;
 // associated with an assembly.
 //
 [assembly: AssemblyTitle("Visma HRM MA")]
-[assembly: AssemblyDescription("Management agent for å hente ut data fra Visma Enterprise HRM")]
+[assembly: AssemblyDescription("Management agent for Ã¥ hente ut data fra Visma Enterprise HRM")]
 
 [assembly: AssemblyCompany("VIGO IKS")]
 [assembly: AssemblyProduct("VigoBAS")]
-[assembly: AssemblyCopyright("Copyright © 2019 Vigo")]
+[assembly: AssemblyCopyright("Copyright Â© 2019 Vigo")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -44,8 +44,8 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers
 // by using the '*' as shown below:
 //[assembly: AssemblyInformationalVersion("1.1.0")]
-//[assembly: AssemblyVersion("1.4.2.*")]
-[assembly: AssemblyFileVersion("1.7.0")]
+[assembly: AssemblyVersion("1.0.0.*")]
+[assembly: AssemblyFileVersion("1.0.0")]
 //
 // In order to sign your assembly you must specify a key to use. Refer to the
 // Microsoft .NET Framework documentation for more information on assembly signing.
