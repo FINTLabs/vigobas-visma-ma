@@ -68,7 +68,7 @@ jobs:
         - name: Download artifact
           uses: actions/download-artifact@v2
           with:
-            name: Visma-HRM-MA
+            name: vigobas-visma-hr-ma
 
         - name: Release
           uses: softprops/action-gh-release@v1
