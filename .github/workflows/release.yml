@@ -31,26 +31,46 @@ jobs:
         id: get_tag
         run: echo ::set-output name=ID::${GITHUB_REF/refs\/tags\//}
         shell: bash
+        
+      - name: Get year
+        id: get_year
+        run: echo "::set-output name=YEAR::$(date +'%Y')"
+        shell: bash
+
+      - name: Set assembly info       
+        run: |
+          sed -i -E "s/(AssemblyVersion[(]\").*(\"[)])/\1${{steps.get_tag.outputs.ID}}\2/"  ./AssemblyInfo.cs
+          sed -i -E "s/(AssemblyFileVersion[(]\").*(\"[)])/\1${{steps.get_tag.outputs.ID}}\2/"  ./AssemblyInfo.cs
+          sed -i -E "s/(AssemblyCopyright[(]\"Copyright ).*( Vigo IKS)/\1${{steps.get_year.outputs.YEAR}}\2/"  ./AssemblyInfo.cs
+        shell: bash
 
       - name: Build Solution
         run: |
           msbuild.exe "Visma HRM MA.sln" -property:platform="Any CPU" -property:Configuration="Release"
+		  
+      - name: Pack release
+        run: |
+          cd bin/release
+          7z a -tzip vigobas-visma-hr-ma-${{steps.get_tag.outputs.ID}}.zip *.dll -r
+          cp *.zip ../..
           
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.3.1
         with:
-          name: Visma-HRM-MA
-          path: bin/release/Visma*.dll
+          name: vigobas-visma-hr-ma
+          path: vigobas-visma-hr-ma-${{steps.get_tag.outputs.ID}}.zip          
+
   publish:
-    needs: build
-    name: publish artifacts to github release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: Visma-HRM-MA
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: Visma*.dll
+      needs: build
+      name: publish artifacts to github release
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download artifact
+          uses: actions/download-artifact@v2
+          with:
+            name: Visma-HRM-MA
+
+        - name: Release
+          uses: softprops/action-gh-release@v1
+          with:
+            files: vigobas-visma-hr-ma-*.zip
