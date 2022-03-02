@@ -29,7 +29,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyCompany("VIGO IKS")]
 [assembly: AssemblyProduct("VigoBAS")]
-[assembly: AssemblyCopyright("Copyright © 2019 Vigo")]
+[assembly: AssemblyCopyright("Copyright 2020 Vigo IKS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
